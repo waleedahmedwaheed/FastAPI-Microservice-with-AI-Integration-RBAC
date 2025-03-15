@@ -723,3 +723,56 @@ WHERE (documents.content LIKE concat('%%', %s, '%%'))
 2025-03-16 00:20:55,397 - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Sat, 15 Mar 2025 19:20:54 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'ideation-r5xvja', 'openai-processing-ms': '738', 'openai-version': '2020-10-01', 'x-ratelimit-limit-requests': '5000', 'x-ratelimit-limit-tokens': '450000', 'x-ratelimit-remaining-requests': '4999', 'x-ratelimit-remaining-tokens': '449897', 'x-ratelimit-reset-requests': '12ms', 'x-ratelimit-reset-tokens': '13ms', 'x-request-id': 'req_cd37dc3ca841bac4ab6795d6cbcb7e4b', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '920e5ee0fb12907a-KHI', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
 2025-03-16 00:20:55,397 - DEBUG - request_id: req_cd37dc3ca841bac4ab6795d6cbcb7e4b
 2025-03-16 00:20:55,398 - INFO - ROLLBACK
+2025-03-16 00:29:29,411 - DEBUG - close.started
+2025-03-16 00:29:29,412 - DEBUG - close.complete
+2025-03-16 00:37:36,060 - INFO - SELECT DATABASE()
+2025-03-16 00:37:36,061 - INFO - [raw sql] ()
+2025-03-16 00:37:36,063 - INFO - SELECT @@sql_mode
+2025-03-16 00:37:36,063 - INFO - [raw sql] ()
+2025-03-16 00:37:36,065 - INFO - SELECT @@lower_case_table_names
+2025-03-16 00:37:36,065 - INFO - [raw sql] ()
+2025-03-16 00:37:36,067 - INFO - BEGIN (implicit)
+2025-03-16 00:37:36,083 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 00:37:36,083 - INFO - [generated in 0.00089s] ('testuser',)
+2025-03-16 00:37:36,086 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\hamza\AppData\Local\Programs\Python\Python310\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-16 00:37:36,089 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-16 00:37:36,090 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-16 00:37:36,512 - INFO - ROLLBACK
+2025-03-16 00:43:30,420 - INFO - SELECT DATABASE()
+2025-03-16 00:43:30,421 - INFO - [raw sql] ()
+2025-03-16 00:43:30,422 - INFO - SELECT @@sql_mode
+2025-03-16 00:43:30,423 - INFO - [raw sql] ()
+2025-03-16 00:43:30,426 - INFO - SELECT @@lower_case_table_names
+2025-03-16 00:43:30,427 - INFO - [raw sql] ()
+2025-03-16 00:43:30,428 - INFO - BEGIN (implicit)
+2025-03-16 00:43:30,435 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 00:43:30,436 - INFO - [generated in 0.00055s] ('testuser',)
+2025-03-16 00:43:30,441 - INFO - SELECT profiles.id, profiles.user_id, profiles.bio 
+FROM profiles 
+WHERE profiles.user_id = %s
+2025-03-16 00:43:30,441 - INFO - [generated in 0.00050s] (1,)
+2025-03-16 00:43:30,460 - INFO - ROLLBACK
+2025-03-16 00:43:49,110 - INFO - SELECT DATABASE()
+2025-03-16 00:43:49,111 - INFO - [raw sql] ()
+2025-03-16 00:43:49,113 - INFO - SELECT @@sql_mode
+2025-03-16 00:43:49,114 - INFO - [raw sql] ()
+2025-03-16 00:43:49,115 - INFO - SELECT @@lower_case_table_names
+2025-03-16 00:43:49,115 - INFO - [raw sql] ()
+2025-03-16 00:43:49,117 - INFO - BEGIN (implicit)
+2025-03-16 00:43:49,126 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 00:43:49,126 - INFO - [generated in 0.00086s] ('testuser',)
+2025-03-16 00:43:49,130 - INFO - SELECT profiles.id, profiles.user_id, profiles.bio 
+FROM profiles 
+WHERE profiles.user_id = %s
+2025-03-16 00:43:49,130 - INFO - [generated in 0.00042s] (1,)
+2025-03-16 00:43:49,133 - INFO - ROLLBACK

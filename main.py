@@ -10,6 +10,7 @@ from auth import router as auth_router
 from pydantic import BaseModel
 import logging
 
+
 logging.basicConfig(
     filename="app.log",  # Log file
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -21,6 +22,7 @@ app = FastAPI(title="FastAPI Microservice")
 # ✅ Secure Routes
 app.include_router(auth_router, prefix="")  
 app.include_router(rag_router, prefix="/rag")
+
 
 
 @app.get("/")
