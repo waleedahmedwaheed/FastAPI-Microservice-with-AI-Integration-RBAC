@@ -162,3 +162,9 @@ Swagger UI: http://127.0.0.1:8000/docs
     "answer": "Blockchain is a secure digital ledger technology used in cryptocurrencies."
 }
 ```
+
+### ✅ Running Tests with Pytest
+
+```
+pytest tests/
+```
