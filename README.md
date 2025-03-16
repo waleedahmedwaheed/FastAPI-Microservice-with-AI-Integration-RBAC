@@ -168,3 +168,5 @@ Swagger UI: http://127.0.0.1:8000/docs
 ```
 pytest tests/
 ```
+
+<p>This will test authentication, CRUD operations, AI queries, and RBAC access.</p>
