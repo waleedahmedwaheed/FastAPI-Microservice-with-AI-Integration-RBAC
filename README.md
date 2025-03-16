@@ -39,7 +39,7 @@ venv\Scripts\activate      # On Windows
 pip install -r requirements.txt
 ```
 
-## Running the Microservice
+## 🚀 Running the Microservice
 
 ### Apply Database Migrations
 
@@ -59,3 +59,17 @@ The API will be available at: http://127.0.0.1:8000
 
 Swagger UI: http://127.0.0.1:8000/docs
   
+  
+### 🔑 Authentication & Authorization
+
+#### Register a New User
+Endpoint: POST /register
+Payload:
+
+```json
+{
+    "username": "johndoe",
+    "email": "johndoe@example.com",
+    "password": "securepassword"
+}
+```
