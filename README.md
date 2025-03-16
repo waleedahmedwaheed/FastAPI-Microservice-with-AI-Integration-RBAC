@@ -82,7 +82,7 @@ Swagger UI: http://127.0.0.1:8000/docs
 }
 ```
 
-#### Login & Get JWT Token
+#### 2️⃣ Login & Get JWT Token
 <p>Endpoint: POST /login </p>
 <p>Payload:</p>
 
@@ -101,7 +101,7 @@ Swagger UI: http://127.0.0.1:8000/docs
 }
 ```
 
-#### Get User Profile
+#### 3️⃣ Get User Profile
 <p>Endpoint: GET /profile </p>
 <p>🔐 Requires JWT Authentication (Authorization: Bearer <token>)</p>
 ✅ Response:
@@ -114,7 +114,7 @@ Swagger UI: http://127.0.0.1:8000/docs
 }
 ```
 
-#### Update Profile
+#### 4️⃣ Update Profile
 <p>Endpoint: PUT /profile </p>
 <p>Payload: </p>
 
@@ -132,7 +132,7 @@ Swagger UI: http://127.0.0.1:8000/docs
 }
 ```
 
-#### Delete Profile
+#### 5️⃣ Delete Profile
 <p>Endpoint: DELETE /profile</p>
 <p>🔐 Requires JWT Authentication</p>
 ✅ Response:
@@ -143,7 +143,7 @@ Swagger UI: http://127.0.0.1:8000/docs
 }
 ```
 
-#### Query AI-Powered RAG Pipeline
+#### 6️⃣ Query AI-Powered RAG Pipeline
 <p>Endpoint: POST /rag/query</p>
 <p>Payload:</p>
 
