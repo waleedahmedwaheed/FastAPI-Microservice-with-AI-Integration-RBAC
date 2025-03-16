@@ -16,3 +16,4 @@ langchain
 openai
 faiss-cpu
 oso
+python-jose

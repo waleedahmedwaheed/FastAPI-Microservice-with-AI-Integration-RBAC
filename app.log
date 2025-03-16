@@ -795,3 +795,16 @@ WHERE users.username = %s
 2025-03-16 14:44:37,772 - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Sun, 16 Mar 2025 09:44:37 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'ideation-r5xvja'), ('openai-processing-ms', '1193'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '5000'), ('x-ratelimit-limit-tokens', '450000'), ('x-ratelimit-remaining-requests', '4999'), ('x-ratelimit-remaining-tokens', '449902'), ('x-ratelimit-reset-requests', '12ms'), ('x-ratelimit-reset-tokens', '12ms'), ('x-request-id', 'req_fbf860278852b9930c50e09f8188600c'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=FgIsMKWV0TznDmQLK17IClgW5aSX_gUWH8e72e8g2ns-1742118277-1.0.1.1-_KBKL65uU_feE3iEhzO2ZQGtQOcOpjW10OP3B5V5IJrFbDjaP0MXvC_VySfEVhULIPSG4hYyvf8gM45gll1mW99TDaEW_2bgzxd5.G5iEK0; path=/; expires=Sun, 16-Mar-25 10:14:37 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=Xyhdc2NzId8.Oh7ndD00x_zVbRILLayuiDCLGAfSCt8-1742118277890-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '9213501b69ef9092-KHI'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
 2025-03-16 14:44:37,772 - DEBUG - request_id: req_fbf860278852b9930c50e09f8188600c
 2025-03-16 14:44:37,777 - INFO - ROLLBACK
+2025-03-16 15:20:53,214 - INFO - BEGIN (implicit)
+2025-03-16 15:20:53,215 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 15:20:53,215 - INFO - [cached since 2328s ago] ('adminuser',)
+2025-03-16 15:20:53,218 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\hamza\AppData\Local\Programs\Python\Python310\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-16 15:20:53,220 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-16 15:20:53,220 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-16 15:20:53,665 - INFO - ROLLBACK
