@@ -73,3 +73,82 @@ Payload:
     "password": "securepassword"
 }
 ```
+✅ Response: 
+```json
+{"id": 1, "username": "johndoe", "email": "johndoe@example.com"}
+```
+
+#### Login & Get JWT Token
+Endpoint: POST /login
+Payload:
+
+```json
+{
+    "username": "johndoe",
+    "password": "securepassword"
+}
+```
+
+✅ Response:
+```json{
+    "access_token": "your_jwt_token",
+    "token_type": "bearer"
+}
+```
+
+#### Get User Profile
+Endpoint: GET /profile
+🔐 Requires JWT Authentication (Authorization: Bearer <token>)
+✅ Response:
+
+```json
+{
+    "id": 1,
+    "user_id": 1,
+    "bio": "This is a new profile."
+}
+```
+
+#### Update Profile
+Endpoint: PUT /profile
+Payload:
+
+```json
+{
+    "bio": "Updated bio information"
+}
+```
+✅ Response:
+
+```
+{"message": "Profile updated successfully", "bio": "Updated bio information"}
+```
+
+#### Delete Profile
+Endpoint: DELETE /profile
+🔐 Requires JWT Authentication
+✅ Response:
+
+```
+{"message": "Profile deleted successfully"}
+```
+
+#### Query AI-Powered RAG Pipeline
+Endpoint: POST /rag/query
+Payload:
+
+```json
+{
+    "query": "What is blockchain?"
+}
+```
+
+✅ Response:
+
+```json
+{
+    "query": "What is blockchain?",
+    "context": "Blockchain is a decentralized ledger technology...",
+    "answer": "Blockchain is a secure digital ledger technology used in cryptocurrencies."
+}
+```
