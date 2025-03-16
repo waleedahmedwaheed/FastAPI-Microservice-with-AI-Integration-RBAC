@@ -63,8 +63,8 @@ Swagger UI: http://127.0.0.1:8000/docs
 ### 🔑 Authentication & Authorization
 
 #### Register a New User
-Endpoint: POST /register
-Payload:
+<p>Endpoint: POST /register </p>
+<p> Payload: </p>
 
 ```json
 {
