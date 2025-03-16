@@ -8,6 +8,7 @@ from pydantic import BaseModel
 from database import get_db
 from auth import get_current_user
 from openai import OpenAI, OpenAIError
+from sqlalchemy.sql import text
 
 # ✅ Load environment variables securely
 load_dotenv()
@@ -77,22 +78,47 @@ async def query_rag(
         print(f"❌ Unexpected Error: {e}")  # ✅ Debugging
         raise HTTPException(status_code=404, detail="No relevant documents found")
 
+# async def get_relevant_chunks(db: AsyncSession, query: str, top_k: int = 3):
+    # """
+    # 🔹 Retrieve the most relevant documents based on a user query.
+    # - Uses SQLAlchemy to fetch data from `documents` table
+    # - Matches query against document content
+    # - Returns top_k relevant document chunks
+    # """
+    # try:
+        # result = await db.execute(
+            # select(Document)
+            # .filter(Document.content.contains(query))  # ✅ Search for relevant content
+            # .limit(top_k)  # ✅ Limit results
+        # )
+        # documents = result.scalars().all()
+        # return documents
+
+    # except Exception as e:
+        # print(f"❌ Database Query Error: {e}")  # ✅ Debugging
+        # return []
+        
 async def get_relevant_chunks(db: AsyncSession, query: str, top_k: int = 3):
     """
-    🔹 Retrieve the most relevant documents based on a user query.
-    - Uses SQLAlchemy to fetch data from `documents` table
-    - Matches query against document content
-    - Returns top_k relevant document chunks
+    🔹 Retrieve relevant documents using MySQL Full-Text Search.
+    ✅ Fix: Ensure the full document (title, content) is retrieved.
     """
     try:
-        result = await db.execute(
-            select(Document)
-            .filter(Document.content.contains(query))  # ✅ Search for relevant content
-            .limit(top_k)  # ✅ Limit results
-        )
-        documents = result.scalars().all()
-        return documents
+        sql = text("""
+            SELECT id, title, content FROM documents 
+            WHERE MATCH(content) AGAINST (:query IN BOOLEAN MODE) 
+            LIMIT :top_k
+        """)
+
+        result = await db.execute(sql, {"query": f'+{query}*', "top_k": top_k})
+        documents = result.mappings().all()  # ✅ Fetch full document as dict
+
+        if not documents:
+            print(f"❌ No matching documents found for: {query}")  # ✅ Debugging
+        
+        return documents  # ✅ Returns a list of full document data
 
     except Exception as e:
         print(f"❌ Database Query Error: {e}")  # ✅ Debugging
         return []
+ 

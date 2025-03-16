@@ -401,3 +401,288 @@ WHERE (documents.content LIKE concat('%%', %s, '%%'))
 2025-03-16 13:20:18,733 - INFO - ROLLBACK
 2025-03-16 13:26:29,913 - DEBUG - close.started
 2025-03-16 13:26:29,914 - DEBUG - close.complete
+2025-03-16 13:26:32,298 - INFO - SELECT DATABASE()
+2025-03-16 13:26:32,299 - INFO - [raw sql] ()
+2025-03-16 13:26:32,301 - INFO - SELECT @@sql_mode
+2025-03-16 13:26:32,302 - INFO - [raw sql] ()
+2025-03-16 13:26:32,303 - INFO - SELECT @@lower_case_table_names
+2025-03-16 13:26:32,303 - INFO - [raw sql] ()
+2025-03-16 13:26:32,305 - INFO - BEGIN (implicit)
+2025-03-16 13:26:32,312 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 13:26:32,313 - INFO - [generated in 0.00063s] ('testuser',)
+2025-03-16 13:26:32,317 - INFO - SELECT documents.id, documents.title, documents.content, documents.created_at 
+FROM documents 
+WHERE (documents.content LIKE concat('%%', %s, '%%')) 
+ LIMIT %s
+2025-03-16 13:26:32,318 - INFO - [generated in 0.00056s] ('asdasd', 3)
+2025-03-16 13:26:32,319 - INFO - ROLLBACK
+2025-03-16 14:30:40,480 - INFO - SELECT DATABASE()
+2025-03-16 14:30:40,481 - INFO - [raw sql] ()
+2025-03-16 14:30:40,483 - INFO - SELECT @@sql_mode
+2025-03-16 14:30:40,483 - INFO - [raw sql] ()
+2025-03-16 14:30:40,484 - INFO - SELECT @@lower_case_table_names
+2025-03-16 14:30:40,486 - INFO - [raw sql] ()
+2025-03-16 14:30:40,487 - INFO - BEGIN (implicit)
+2025-03-16 14:30:40,495 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:30:40,496 - INFO - [generated in 0.00068s] ('testuserabcdeggww',)
+2025-03-16 14:30:40,509 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\hamza\AppData\Local\Programs\Python\Python310\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-16 14:30:40,523 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-16 14:30:40,523 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-16 14:30:40,954 - INFO - ROLLBACK
+2025-03-16 14:30:52,389 - INFO - BEGIN (implicit)
+2025-03-16 14:30:52,389 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:30:52,390 - INFO - [cached since 11.9s ago] ('testuserabcdeggww',)
+2025-03-16 14:30:52,392 - INFO - ROLLBACK
+2025-03-16 14:31:01,021 - INFO - BEGIN (implicit)
+2025-03-16 14:31:01,023 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:31:01,023 - INFO - [cached since 20.53s ago] ('testuserabcdeggww',)
+2025-03-16 14:31:01,025 - INFO - ROLLBACK
+2025-03-16 14:31:05,264 - INFO - BEGIN (implicit)
+2025-03-16 14:31:05,265 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:31:05,265 - INFO - [cached since 24.77s ago] ('testuserabcdeggww',)
+2025-03-16 14:31:05,267 - INFO - ROLLBACK
+2025-03-16 14:31:12,909 - INFO - BEGIN (implicit)
+2025-03-16 14:31:12,910 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:31:12,911 - INFO - [cached since 32.42s ago] ('testuserabcdeggww',)
+2025-03-16 14:31:12,913 - INFO - ROLLBACK
+2025-03-16 14:31:34,934 - INFO - BEGIN (implicit)
+2025-03-16 14:31:34,953 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:31:34,953 - INFO - [cached since 54.46s ago] ('testuserabcdeggww',)
+2025-03-16 14:31:34,958 - INFO - ROLLBACK
+2025-03-16 14:31:36,969 - INFO - BEGIN (implicit)
+2025-03-16 14:31:36,970 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:31:36,970 - INFO - [cached since 56.48s ago] ('testuserabcdeggww',)
+2025-03-16 14:31:36,973 - INFO - ROLLBACK
+2025-03-16 14:32:41,580 - INFO - SELECT DATABASE()
+2025-03-16 14:32:41,580 - INFO - [raw sql] ()
+2025-03-16 14:32:41,582 - INFO - SELECT @@sql_mode
+2025-03-16 14:32:41,582 - INFO - [raw sql] ()
+2025-03-16 14:32:41,583 - INFO - SELECT @@lower_case_table_names
+2025-03-16 14:32:41,583 - INFO - [raw sql] ()
+2025-03-16 14:32:41,585 - INFO - BEGIN (implicit)
+2025-03-16 14:32:41,591 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:32:41,592 - INFO - [generated in 0.00057s] ('testuserabcdeggww',)
+2025-03-16 14:32:41,595 - INFO - ROLLBACK
+2025-03-16 14:35:18,868 - INFO - BEGIN (implicit)
+2025-03-16 14:35:18,870 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:35:18,870 - INFO - [cached since 157.3s ago] ('testuserabcdeggww',)
+2025-03-16 14:35:18,875 - INFO - ROLLBACK
+2025-03-16 14:35:55,466 - INFO - SELECT DATABASE()
+2025-03-16 14:35:55,467 - INFO - [raw sql] ()
+2025-03-16 14:35:55,469 - INFO - SELECT @@sql_mode
+2025-03-16 14:35:55,469 - INFO - [raw sql] ()
+2025-03-16 14:35:55,470 - INFO - SELECT @@lower_case_table_names
+2025-03-16 14:35:55,471 - INFO - [raw sql] ()
+2025-03-16 14:35:55,472 - INFO - BEGIN (implicit)
+2025-03-16 14:35:55,480 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:35:55,480 - INFO - [generated in 0.00054s] ('testuserabcdeggww',)
+2025-03-16 14:35:55,483 - INFO - 
+            SELECT * FROM documents 
+            WHERE MATCH(content) AGAINST (%s IN BOOLEAN MODE) 
+            LIMIT %s
+        
+2025-03-16 14:35:55,484 - INFO - [generated in 0.00066s] ('+document*', 3)
+2025-03-16 14:35:55,485 - INFO - ROLLBACK
+2025-03-16 14:36:13,476 - INFO - SELECT DATABASE()
+2025-03-16 14:36:13,477 - INFO - [raw sql] ()
+2025-03-16 14:36:13,488 - INFO - SELECT @@sql_mode
+2025-03-16 14:36:13,489 - INFO - [raw sql] ()
+2025-03-16 14:36:13,490 - INFO - SELECT @@lower_case_table_names
+2025-03-16 14:36:13,490 - INFO - [raw sql] ()
+2025-03-16 14:36:13,492 - INFO - BEGIN (implicit)
+2025-03-16 14:36:13,501 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:36:13,502 - INFO - [generated in 0.00067s] ('testuserabcdeggww',)
+2025-03-16 14:36:13,505 - INFO - 
+            SELECT * FROM documents 
+            WHERE MATCH(content) AGAINST (%s IN NATURAL LANGUAGE MODE) 
+            LIMIT %s
+        
+2025-03-16 14:36:13,506 - INFO - [generated in 0.00091s] ('+document*', 3)
+2025-03-16 14:36:13,508 - INFO - ROLLBACK
+2025-03-16 14:36:16,767 - INFO - BEGIN (implicit)
+2025-03-16 14:36:16,767 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:36:16,768 - INFO - [cached since 3.268s ago] ('testuserabcdeggww',)
+2025-03-16 14:36:16,770 - INFO - 
+            SELECT * FROM documents 
+            WHERE MATCH(content) AGAINST (%s IN NATURAL LANGUAGE MODE) 
+            LIMIT %s
+        
+2025-03-16 14:36:16,770 - INFO - [cached since 3.266s ago] ('+document*', 3)
+2025-03-16 14:36:16,774 - INFO - ROLLBACK
+2025-03-16 14:36:31,269 - INFO - BEGIN (implicit)
+2025-03-16 14:36:31,269 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:36:31,270 - INFO - [cached since 17.77s ago] ('testuserabcdeggww',)
+2025-03-16 14:36:31,274 - INFO - 
+            SELECT * FROM documents 
+            WHERE MATCH(content) AGAINST (%s IN NATURAL LANGUAGE MODE) 
+            LIMIT %s
+        
+2025-03-16 14:36:31,275 - INFO - [cached since 17.77s ago] ('+document*', 3)
+2025-03-16 14:36:31,277 - INFO - ROLLBACK
+2025-03-16 14:36:44,417 - INFO - SELECT DATABASE()
+2025-03-16 14:36:44,417 - INFO - [raw sql] ()
+2025-03-16 14:36:44,419 - INFO - SELECT @@sql_mode
+2025-03-16 14:36:44,419 - INFO - [raw sql] ()
+2025-03-16 14:36:44,421 - INFO - SELECT @@lower_case_table_names
+2025-03-16 14:36:44,421 - INFO - [raw sql] ()
+2025-03-16 14:36:44,423 - INFO - BEGIN (implicit)
+2025-03-16 14:36:44,431 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:36:44,431 - INFO - [generated in 0.00075s] ('testuserabcdeggww',)
+2025-03-16 14:36:44,435 - INFO - 
+            SELECT * FROM documents 
+            WHERE MATCH(content) AGAINST (%s IN BOOLEAN MODE) 
+            LIMIT %s
+        
+2025-03-16 14:36:44,435 - INFO - [generated in 0.00047s] ('+document*', 3)
+2025-03-16 14:36:44,437 - INFO - ROLLBACK
+2025-03-16 14:38:52,359 - INFO - SELECT DATABASE()
+2025-03-16 14:38:52,359 - INFO - [raw sql] ()
+2025-03-16 14:38:52,360 - INFO - SELECT @@sql_mode
+2025-03-16 14:38:52,360 - INFO - [raw sql] ()
+2025-03-16 14:38:52,361 - INFO - SELECT @@lower_case_table_names
+2025-03-16 14:38:52,361 - INFO - [raw sql] ()
+2025-03-16 14:38:52,362 - INFO - BEGIN (implicit)
+2025-03-16 14:38:52,365 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:38:52,366 - INFO - [generated in 0.00043s] ('testuserabcdeggww',)
+2025-03-16 14:38:52,367 - INFO - 
+            SELECT id, title, content FROM documents 
+            WHERE MATCH(content) AGAINST (%s IN BOOLEAN MODE) 
+            LIMIT %s
+        
+2025-03-16 14:38:52,367 - INFO - [generated in 0.00027s] ('+document*', 3)
+2025-03-16 14:38:52,372 - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': 'Based on the following context, answer the query.\n\nContext:\nThis is the content of document 1. It contains information on AI and machine learning.\nDocument 2 discusses the basics of FastAPI and its use in building modern web applications.\nThis document provides an in-depth analysis of the RAG pipeline used for AI-based text retrieval and generation.\n\nQuery: document\nAnswer:'}], 'model': 'gpt-4o'}}
+2025-03-16 14:38:52,398 - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-03-16 14:38:52,398 - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:38:52,498 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001C7DD45F9A0>
+2025-03-16 14:38:52,498 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001C7DCED4340> server_hostname='api.openai.com' timeout=5.0
+2025-03-16 14:38:52,535 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001C7DD45F7F0>
+2025-03-16 14:38:52,535 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:38:52,535 - DEBUG - send_request_headers.complete
+2025-03-16 14:38:52,535 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:38:52,535 - DEBUG - send_request_body.complete
+2025-03-16 14:38:52,535 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:38:55,132 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sun, 16 Mar 2025 09:38:55 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'ideation-r5xvja'), (b'openai-processing-ms', b'1178'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'5000'), (b'x-ratelimit-limit-tokens', b'450000'), (b'x-ratelimit-remaining-requests', b'4999'), (b'x-ratelimit-remaining-tokens', b'449888'), (b'x-ratelimit-reset-requests', b'12ms'), (b'x-ratelimit-reset-tokens', b'14ms'), (b'x-request-id', b'req_d832b72863e9de2a6e9fa29cf92cd987'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=O9K8MS6_e5Jl9GFlpQebUbE_y6T3VIpU_4Izj8eN92w-1742117935-1.0.1.1-uuTCYvlCbW2Csr7VJBHfbiGR2bkT5cwMFjFAvr9GGL1iMorKA5M8kqgVpTn25a6Ul_IWPTJBmAxaMewUzdh1XQ4Vk0Dig100MzFx.3Zd4yo; path=/; expires=Sun, 16-Mar-25 10:08:55 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=Ps69LNA6x2sE4.WL7ybTARscopKw8T.X3eC6BCb1Nyc-1742117935251-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'921347b74e5f90a5-KHI'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-03-16 14:38:55,133 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 14:38:55,133 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:38:55,137 - DEBUG - receive_response_body.complete
+2025-03-16 14:38:55,137 - DEBUG - response_closed.started
+2025-03-16 14:38:55,137 - DEBUG - response_closed.complete
+2025-03-16 14:38:55,137 - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Sun, 16 Mar 2025 09:38:55 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'ideation-r5xvja'), ('openai-processing-ms', '1178'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '5000'), ('x-ratelimit-limit-tokens', '450000'), ('x-ratelimit-remaining-requests', '4999'), ('x-ratelimit-remaining-tokens', '449888'), ('x-ratelimit-reset-requests', '12ms'), ('x-ratelimit-reset-tokens', '14ms'), ('x-request-id', 'req_d832b72863e9de2a6e9fa29cf92cd987'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=O9K8MS6_e5Jl9GFlpQebUbE_y6T3VIpU_4Izj8eN92w-1742117935-1.0.1.1-uuTCYvlCbW2Csr7VJBHfbiGR2bkT5cwMFjFAvr9GGL1iMorKA5M8kqgVpTn25a6Ul_IWPTJBmAxaMewUzdh1XQ4Vk0Dig100MzFx.3Zd4yo; path=/; expires=Sun, 16-Mar-25 10:08:55 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=Ps69LNA6x2sE4.WL7ybTARscopKw8T.X3eC6BCb1Nyc-1742117935251-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '921347b74e5f90a5-KHI'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-03-16 14:38:55,137 - DEBUG - request_id: req_d832b72863e9de2a6e9fa29cf92cd987
+2025-03-16 14:38:55,141 - INFO - ROLLBACK
+2025-03-16 14:39:02,978 - INFO - BEGIN (implicit)
+2025-03-16 14:39:02,979 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:39:02,979 - INFO - [cached since 10.61s ago] ('testuserabcdeggww',)
+2025-03-16 14:39:02,981 - INFO - 
+            SELECT id, title, content FROM documents 
+            WHERE MATCH(content) AGAINST (%s IN BOOLEAN MODE) 
+            LIMIT %s
+        
+2025-03-16 14:39:02,981 - INFO - [cached since 10.61s ago] ('+artificial*', 3)
+2025-03-16 14:39:02,984 - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': 'Based on the following context, answer the query.\n\nContext:\nArtificial Intelligence (AI) is the simulation of human intelligence in machines.\nIn this document, we discuss the impact of artificial intelligence in healthcare, with use cases in diagnostics, treatment planning, and patient management.\n\nQuery: artificial\nAnswer:'}], 'model': 'gpt-4o'}}
+2025-03-16 14:39:02,985 - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-03-16 14:39:02,985 - DEBUG - close.started
+2025-03-16 14:39:02,985 - DEBUG - close.complete
+2025-03-16 14:39:02,985 - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:39:03,022 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001C7DD4C1E10>
+2025-03-16 14:39:03,022 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001C7DCED4340> server_hostname='api.openai.com' timeout=5.0
+2025-03-16 14:39:03,056 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001C7DD4C1ED0>
+2025-03-16 14:39:03,056 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:39:03,056 - DEBUG - send_request_headers.complete
+2025-03-16 14:39:03,056 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:39:03,056 - DEBUG - send_request_body.complete
+2025-03-16 14:39:03,056 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:39:03,573 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sun, 16 Mar 2025 09:39:03 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'ideation-r5xvja'), (b'openai-processing-ms', b'176'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'5000'), (b'x-ratelimit-limit-tokens', b'450000'), (b'x-ratelimit-remaining-requests', b'4999'), (b'x-ratelimit-remaining-tokens', b'449901'), (b'x-ratelimit-reset-requests', b'12ms'), (b'x-ratelimit-reset-tokens', b'13ms'), (b'x-request-id', b'req_4f36429309fad6cc675b99f14b17dab4'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'921347f9081ad055-KHI'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-03-16 14:39:03,575 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 14:39:03,575 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:39:03,580 - DEBUG - receive_response_body.complete
+2025-03-16 14:39:03,580 - DEBUG - response_closed.started
+2025-03-16 14:39:03,580 - DEBUG - response_closed.complete
+2025-03-16 14:39:03,580 - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Sun, 16 Mar 2025 09:39:03 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'ideation-r5xvja', 'openai-processing-ms': '176', 'openai-version': '2020-10-01', 'x-ratelimit-limit-requests': '5000', 'x-ratelimit-limit-tokens': '450000', 'x-ratelimit-remaining-requests': '4999', 'x-ratelimit-remaining-tokens': '449901', 'x-ratelimit-reset-requests': '12ms', 'x-ratelimit-reset-tokens': '13ms', 'x-request-id': 'req_4f36429309fad6cc675b99f14b17dab4', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '921347f9081ad055-KHI', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-03-16 14:39:03,581 - DEBUG - request_id: req_4f36429309fad6cc675b99f14b17dab4
+2025-03-16 14:39:03,582 - INFO - ROLLBACK
+2025-03-16 14:39:14,102 - INFO - BEGIN (implicit)
+2025-03-16 14:39:14,102 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:39:14,103 - INFO - [cached since 21.74s ago] ('testuserabcdeggww',)
+2025-03-16 14:39:14,106 - INFO - 
+            SELECT id, title, content FROM documents 
+            WHERE MATCH(content) AGAINST (%s IN BOOLEAN MODE) 
+            LIMIT %s
+        
+2025-03-16 14:39:14,106 - INFO - [cached since 21.74s ago] ('+blockchain*', 3)
+2025-03-16 14:39:14,109 - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': 'Based on the following context, answer the query.\n\nContext:\nBlockchain is a decentralized ledger technology that enables secure transactions.\nIn this document, we explore how blockchain technology is being used to ensure secure transactions in decentralized applications (dApps).\n\nQuery: blockchain\nAnswer:'}], 'model': 'gpt-4o'}}
+2025-03-16 14:39:14,110 - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-03-16 14:39:14,110 - DEBUG - close.started
+2025-03-16 14:39:14,110 - DEBUG - close.complete
+2025-03-16 14:39:14,110 - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:39:14,150 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001C7DD4C2CE0>
+2025-03-16 14:39:14,150 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001C7DCED4340> server_hostname='api.openai.com' timeout=5.0
+2025-03-16 14:39:14,214 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001C7DD4C2D70>
+2025-03-16 14:39:14,214 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:39:14,215 - DEBUG - send_request_headers.complete
+2025-03-16 14:39:14,215 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:39:14,215 - DEBUG - send_request_body.complete
+2025-03-16 14:39:14,215 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:39:15,513 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sun, 16 Mar 2025 09:39:15 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'ideation-r5xvja'), (b'openai-processing-ms', b'884'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'5000'), (b'x-ratelimit-limit-tokens', b'450000'), (b'x-ratelimit-remaining-requests', b'4999'), (b'x-ratelimit-remaining-tokens', b'449905'), (b'x-ratelimit-reset-requests', b'12ms'), (b'x-ratelimit-reset-tokens', b'12ms'), (b'x-request-id', b'req_19e2e7a745b750daf1379c57b92ab0ea'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9213483ec8760048-KHI'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-03-16 14:39:15,513 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 14:39:15,514 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:39:15,519 - DEBUG - receive_response_body.complete
+2025-03-16 14:39:15,519 - DEBUG - response_closed.started
+2025-03-16 14:39:15,519 - DEBUG - response_closed.complete
+2025-03-16 14:39:15,519 - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Sun, 16 Mar 2025 09:39:15 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'ideation-r5xvja', 'openai-processing-ms': '884', 'openai-version': '2020-10-01', 'x-ratelimit-limit-requests': '5000', 'x-ratelimit-limit-tokens': '450000', 'x-ratelimit-remaining-requests': '4999', 'x-ratelimit-remaining-tokens': '449905', 'x-ratelimit-reset-requests': '12ms', 'x-ratelimit-reset-tokens': '12ms', 'x-request-id': 'req_19e2e7a745b750daf1379c57b92ab0ea', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9213483ec8760048-KHI', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-03-16 14:39:15,519 - DEBUG - request_id: req_19e2e7a745b750daf1379c57b92ab0ea
+2025-03-16 14:39:15,520 - INFO - ROLLBACK
+2025-03-16 14:40:30,663 - INFO - BEGIN (implicit)
+2025-03-16 14:40:30,663 - INFO - SELECT users.id, users.username, users.email, users.hashed_password, users.is_admin, users.role 
+FROM users 
+WHERE users.username = %s
+2025-03-16 14:40:30,665 - INFO - [cached since 98.3s ago] ('testuserabcdeggww',)
+2025-03-16 14:40:30,667 - INFO - 
+            SELECT id, title, content FROM documents 
+            WHERE MATCH(content) AGAINST (%s IN BOOLEAN MODE) 
+            LIMIT %s
+        
+2025-03-16 14:40:30,668 - INFO - [cached since 98.3s ago] ('+xxx*', 3)
+2025-03-16 14:40:30,670 - INFO - ROLLBACK
+2025-03-16 14:40:39,753 - DEBUG - close.started
+2025-03-16 14:40:39,754 - DEBUG - close.complete
