@@ -30,9 +30,4 @@ class Document(Base):
     content = Column(Text, nullable=False)
     created_at = Column(String(50), default="CURRENT_TIMESTAMP")
 
-class FaissIndex(Base):
-    __tablename__ = "faiss_index"
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(255), unique=True, nullable=False)  # Index name
-    index_data = Column(LargeBinary, nullable=False)  # Store FAISS binary data
+ 

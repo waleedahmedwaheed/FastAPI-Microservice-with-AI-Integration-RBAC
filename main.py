@@ -30,6 +30,33 @@ async def root():
     return {"message": "FastAPI Microservice is running"}
     
      
+# @app.get("/profile")
+# async def get_profile(
+    # user: User = Depends(get_current_user), 
+    # db: AsyncSession = Depends(get_db)
+# ):
+    # """Fetch user profile (protected by JWT authentication)"""
+    # try:
+        # # ✅ Ensure the database session is properly awaited
+        # async with db as session:
+            # result = await session.execute(select(Profile).where(Profile.user_id == user.id))
+            # profile = result.scalars().first()
+
+            # # ✅ Fix: Create profile **before** calling authorize()
+            # if profile is None:
+                # profile = Profile(user_id=user.id, bio="This is a new profile.")
+                # session.add(profile)
+                # await session.commit()
+                # await session.refresh(profile)
+
+            # # ✅ Now authorize() will not fail on missing profile
+            # authorize(user, "read", profile)
+
+        # return profile
+
+    # except Exception as e:
+        # raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+
 @app.get("/profile")
 async def get_profile(
     user: User = Depends(get_current_user), 
@@ -37,51 +64,75 @@ async def get_profile(
 ):
     """Fetch user profile (protected by JWT authentication)"""
     try:
-        # ✅ Ensure the database session is properly awaited
-        async with db as session:
-            result = await session.execute(select(Profile).where(Profile.user_id == user.id))
-            profile = result.scalars().first()
+        # ✅ Fetch profile correctly
+        result = await db.execute(select(Profile).where(Profile.user_id == user.id))
+        profile = result.scalars().first()
 
-            # ✅ Fix: Create profile **before** calling authorize()
-            if profile is None:
-                profile = Profile(user_id=user.id, bio="This is a new profile.")
-                session.add(profile)
-                await session.commit()
-                await session.refresh(profile)
+        # ✅ Create profile **before** calling authorize()
+        if profile is None:
+            profile = Profile(user_id=user.id, bio="This is a new profile.")
+            db.add(profile)
+            await db.commit()
+            await db.refresh(profile)
 
-            # ✅ Now authorize() will not fail on missing profile
-            authorize(user, "read", profile)
+        # ✅ Ensure authorization happens after profile creation
+        authorize(user, "read", profile)
 
         return profile
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
+
 # ✅ Update User Profile
 class ProfileUpdate(BaseModel):
     bio: str
     
+# @app.put("/profile")
+# async def update_profile(
+    # profile_data: ProfileUpdate,  # ✅ Accept JSON request body
+    # user: User = Depends(get_current_user), 
+    # db: AsyncSession = Depends(get_db)
+# ):
+    # """Update user profile (protected by JWT authentication)"""
+    # try:
+        # result = await db.execute(select(Profile).where(Profile.user_id == user.id))
+        # profile = result.scalars().first()
+
+        # if profile is None:
+            # raise HTTPException(status_code=404, detail="Profile not found")
+
+        # profile.bio = profile_data.bio  # ✅ Update bio from request body
+        # await db.commit()
+        # await db.refresh(profile)
+
+        # return {"message": "Profile updated successfully", "bio": profile.bio}
+
+    # except Exception as e:
+        # raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+
 @app.put("/profile")
-async def update_profile(
-    profile_data: ProfileUpdate,  # ✅ Accept JSON request body
-    user: User = Depends(get_current_user), 
-    db: AsyncSession = Depends(get_db)
-):
-    """Update user profile (protected by JWT authentication)"""
+async def update_profile(request: ProfileUpdate, user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
+    """✅ Update the profile bio of the authenticated user"""
     try:
+        # Fetch existing profile
         result = await db.execute(select(Profile).where(Profile.user_id == user.id))
         profile = result.scalars().first()
 
+        # ✅ If no profile exists, create one
         if profile is None:
-            raise HTTPException(status_code=404, detail="Profile not found")
+            profile = Profile(user_id=user.id, bio=request.bio)
+            db.add(profile)
+        else:
+            profile.bio = request.bio  # ✅ Update bio field
 
-        profile.bio = profile_data.bio  # ✅ Update bio from request body
         await db.commit()
-        await db.refresh(profile)
+        await db.refresh(profile)  # ✅ Ensure update is saved
 
         return {"message": "Profile updated successfully", "bio": profile.bio}
-
+    
     except Exception as e:
+        await db.rollback()  # ✅ Rollback transaction on failure
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
 

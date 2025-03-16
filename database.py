@@ -1,13 +1,18 @@
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 
-# MySQL Database Configuration
+# ✅ Correct SQLAlchemy Base Import
+Base = declarative_base()
+
 DATABASE_URL = "mysql+asyncmy://root@localhost/fastapi_db"
 
 engine = create_async_engine(DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, class_=AsyncSession)
-Base = declarative_base()
+
+SessionLocal = sessionmaker(
+    bind=engine,
+    expire_on_commit=False,
+    class_=AsyncSession  # ✅ Ensure async session is used correctly
+)
 
 async def get_db():
     async with SessionLocal() as session:
