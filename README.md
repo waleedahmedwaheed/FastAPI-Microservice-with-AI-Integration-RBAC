@@ -127,8 +127,8 @@ Swagger UI: http://127.0.0.1:8000/docs
 
 ```json
 {
-	"message": "Profile updated successfully", 
-	"bio": "Updated bio information"
+    "message": "Profile updated successfully", 
+    "bio": "Updated bio information"
 }
 ```
 
@@ -139,7 +139,7 @@ Swagger UI: http://127.0.0.1:8000/docs
 
 ```json
 {
-	"message": "Profile deleted successfully"
+    "message": "Profile deleted successfully"
 }
 ```
 
