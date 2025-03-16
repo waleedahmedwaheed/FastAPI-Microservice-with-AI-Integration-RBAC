@@ -75,7 +75,7 @@ async def query_rag(
     
     except Exception as e:
         print(f"❌ Unexpected Error: {e}")  # ✅ Debugging
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        raise HTTPException(status_code=404, detail=f"Unexpected error: {str(e)}")
 
 async def get_relevant_chunks(db: AsyncSession, query: str, top_k: int = 3):
     """
