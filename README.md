@@ -76,9 +76,9 @@ Swagger UI: http://127.0.0.1:8000/docs
 ✅ Response: 
 ```json
 {
-	"id": 1, 
-	"username": "johndoe", 
-	"email": "johndoe@example.com"
+    "id": 1, 
+    "username": "johndoe", 
+    "email": "johndoe@example.com"
 }
 ```
 
