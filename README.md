@@ -64,7 +64,7 @@ Swagger UI: http://127.0.0.1:8000/docs
 
 #### Register a New User
 <p>Endpoint: POST /register </p>
-<p> Payload: </p>
+<p>Payload:</p>
 
 ```json
 {
@@ -75,12 +75,16 @@ Swagger UI: http://127.0.0.1:8000/docs
 ```
 ✅ Response: 
 ```json
-{"id": 1, "username": "johndoe", "email": "johndoe@example.com"}
+{
+	"id": 1, 
+	"username": "johndoe", 
+	"email": "johndoe@example.com"
+}
 ```
 
 #### Login & Get JWT Token
-Endpoint: POST /login
-Payload:
+<p>Endpoint: POST /login </p>
+<p>Payload:</p>
 
 ```json
 {
@@ -90,15 +94,16 @@ Payload:
 ```
 
 ✅ Response:
-```json{
+```json
+{
     "access_token": "your_jwt_token",
     "token_type": "bearer"
 }
 ```
 
 #### Get User Profile
-Endpoint: GET /profile
-🔐 Requires JWT Authentication (Authorization: Bearer <token>)
+<p>Endpoint: GET /profile </p>
+<p>🔐 Requires JWT Authentication (Authorization: Bearer <token>)</p>
 ✅ Response:
 
 ```json
@@ -110,8 +115,8 @@ Endpoint: GET /profile
 ```
 
 #### Update Profile
-Endpoint: PUT /profile
-Payload:
+<p>Endpoint: PUT /profile </p>
+<p>Payload: </p>
 
 ```json
 {
@@ -120,22 +125,27 @@ Payload:
 ```
 ✅ Response:
 
-```
-{"message": "Profile updated successfully", "bio": "Updated bio information"}
+```json
+{
+	"message": "Profile updated successfully", 
+	"bio": "Updated bio information"
+}
 ```
 
 #### Delete Profile
-Endpoint: DELETE /profile
-🔐 Requires JWT Authentication
+<p>Endpoint: DELETE /profile</p>
+<p>🔐 Requires JWT Authentication</p>
 ✅ Response:
 
-```
-{"message": "Profile deleted successfully"}
+```json
+{
+	"message": "Profile deleted successfully"
+}
 ```
 
 #### Query AI-Powered RAG Pipeline
-Endpoint: POST /rag/query
-Payload:
+<p>Endpoint: POST /rag/query</p>
+<p>Payload:</p>
 
 ```json
 {
