@@ -10,136 +10,97 @@ from auth import router as auth_router
 from pydantic import BaseModel
 import logging
 
-
+# ✅ Configure Logging
 logging.basicConfig(
-    filename="app.log",  # Log file
+    filename="app.log",  # ✅ Log file for tracking errors & requests
     format="%(asctime)s - %(levelname)s - %(message)s",
     level=logging.DEBUG
 )
 
-app = FastAPI(title="FastAPI Microservice")
+# ✅ Initialize FastAPI Application
+app = FastAPI(title="FastAPI Microservice with AI & RBAC")
 
-# ✅ Secure Routes
-app.include_router(auth_router, prefix="")  
+# ✅ Include Authentication & AI Query Routes
+app.include_router(auth_router, prefix="")
 app.include_router(rag_router, prefix="/rag")
 
-
-
+# ✅ Root Endpoint
 @app.get("/")
 async def root():
     return {"message": "FastAPI Microservice is running"}
-    
-     
-# @app.get("/profile")
-# async def get_profile(
-    # user: User = Depends(get_current_user), 
-    # db: AsyncSession = Depends(get_db)
-# ):
-    # """Fetch user profile (protected by JWT authentication)"""
-    # try:
-        # # ✅ Ensure the database session is properly awaited
-        # async with db as session:
-            # result = await session.execute(select(Profile).where(Profile.user_id == user.id))
-            # profile = result.scalars().first()
 
-            # # ✅ Fix: Create profile **before** calling authorize()
-            # if profile is None:
-                # profile = Profile(user_id=user.id, bio="This is a new profile.")
-                # session.add(profile)
-                # await session.commit()
-                # await session.refresh(profile)
-
-            # # ✅ Now authorize() will not fail on missing profile
-            # authorize(user, "read", profile)
-
-        # return profile
-
-    # except Exception as e:
-        # raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
-
+# ✅ User Profile Routes
 @app.get("/profile")
 async def get_profile(
     user: User = Depends(get_current_user), 
     db: AsyncSession = Depends(get_db)
 ):
-    """Fetch user profile (protected by JWT authentication)"""
+    """
+    🔹 Fetch user profile (protected by JWT authentication).
+    - If the profile does not exist, it is created automatically.
+    """
     try:
-        # ✅ Fetch profile correctly
         result = await db.execute(select(Profile).where(Profile.user_id == user.id))
         profile = result.scalars().first()
 
-        # ✅ Create profile **before** calling authorize()
+        # ✅ Create profile if missing
         if profile is None:
             profile = Profile(user_id=user.id, bio="This is a new profile.")
             db.add(profile)
             await db.commit()
             await db.refresh(profile)
 
-        # ✅ Ensure authorization happens after profile creation
+        # ✅ Authorization check after ensuring profile exists
         authorize(user, "read", profile)
 
         return profile
 
     except Exception as e:
+        logging.error(f"❌ Profile Retrieval Error: {e}")  # ✅ Logging error
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
-
 
 # ✅ Update User Profile
 class ProfileUpdate(BaseModel):
-    bio: str
-    
-# @app.put("/profile")
-# async def update_profile(
-    # profile_data: ProfileUpdate,  # ✅ Accept JSON request body
-    # user: User = Depends(get_current_user), 
-    # db: AsyncSession = Depends(get_db)
-# ):
-    # """Update user profile (protected by JWT authentication)"""
-    # try:
-        # result = await db.execute(select(Profile).where(Profile.user_id == user.id))
-        # profile = result.scalars().first()
-
-        # if profile is None:
-            # raise HTTPException(status_code=404, detail="Profile not found")
-
-        # profile.bio = profile_data.bio  # ✅ Update bio from request body
-        # await db.commit()
-        # await db.refresh(profile)
-
-        # return {"message": "Profile updated successfully", "bio": profile.bio}
-
-    # except Exception as e:
-        # raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+    bio: str  # ✅ Ensure request body contains "bio"
 
 @app.put("/profile")
-async def update_profile(request: ProfileUpdate, user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
-    """✅ Update the profile bio of the authenticated user"""
+async def update_profile(
+    request: ProfileUpdate, 
+    user: User = Depends(get_current_user), 
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    🔹 Update the bio of the authenticated user's profile.
+    - If profile does not exist, it is created automatically.
+    """
     try:
-        # Fetch existing profile
         result = await db.execute(select(Profile).where(Profile.user_id == user.id))
         profile = result.scalars().first()
 
-        # ✅ If no profile exists, create one
+        # ✅ Create profile if it doesn't exist
         if profile is None:
             profile = Profile(user_id=user.id, bio=request.bio)
             db.add(profile)
         else:
-            profile.bio = request.bio  # ✅ Update bio field
+            profile.bio = request.bio  # ✅ Update existing bio
 
         await db.commit()
         await db.refresh(profile)  # ✅ Ensure update is saved
 
         return {"message": "Profile updated successfully", "bio": profile.bio}
-    
+
     except Exception as e:
         await db.rollback()  # ✅ Rollback transaction on failure
+        logging.error(f"❌ Profile Update Error: {e}")
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
-
-# ✅ Delete User Profile 
+# ✅ Delete User Profile
 @app.delete("/profile")
 async def delete_profile(user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
-    """Delete user profile (protected by JWT authentication)"""
+    """
+    🔹 Delete the authenticated user's profile.
+    - Ensures only profile owners can delete their profiles.
+    """
     try:
         result = await db.execute(select(Profile).where(Profile.user_id == user.id))
         profile = result.scalars().first()
@@ -153,25 +114,31 @@ async def delete_profile(user: User = Depends(get_current_user), db: AsyncSessio
         return {"message": "Profile deleted successfully"}
 
     except Exception as e:
+        logging.error(f"❌ Profile Deletion Error: {e}")
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
-
+# ✅ Admin-Only Route with RBAC
 @app.get("/admin")
 async def get_admin_data(user: User = Depends(get_current_user)):
-    """Admin-only route using Oso RBAC"""
-    
-    # 🔹 Enforce Admin Access with Oso
+    """
+    🔹 Admin-only route using Oso RBAC.
+    - Requires "manage" permission on "admin-dashboard".
+    """
     authorize(user, "manage", "admin-dashboard")
 
     return {"message": f"Welcome, {user.username}. You have admin access."}
 
+# ✅ Fetch Any User's Profile (Admin or Profile Owner)
 @app.get("/profile/{user_id}")
 async def get_user_profile(
     user_id: int, 
     user: User = Depends(get_current_user), 
     db: AsyncSession = Depends(get_db)
 ):
-    """Fetch a user's profile (only accessible by owner or admin)"""
+    """
+    🔹 Fetch a user's profile (Only accessible by the profile owner or an admin).
+    - Ensures security by restricting unauthorized access.
+    """
     try:
         result = await db.execute(select(Profile).where(Profile.user_id == user_id))
         profile = result.scalars().first()
@@ -186,10 +153,5 @@ async def get_user_profile(
         return profile
 
     except Exception as e:
+        logging.error(f"❌ Error Fetching User Profile: {e}")
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
-
-    
-
- 
-
-  
