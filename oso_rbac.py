@@ -1,6 +1,8 @@
 from oso import Oso
+from fastapi import HTTPException
 from models import User, Profile
 
+# Initialize Oso
 oso = Oso()
 
 # Register models with Oso before loading policies
@@ -11,5 +13,6 @@ oso.register_class(Profile)
 oso.load_files(["policies.polar"])
 
 def authorize(user: User, action: str, resource: object):
+    """Authorize user actions using Oso RBAC."""
     if not oso.is_allowed(user, action, resource):
         raise HTTPException(status_code=403, detail="Access denied")

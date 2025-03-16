@@ -158,9 +158,10 @@ async def delete_profile(user: User = Depends(get_current_user), db: AsyncSessio
 
 @app.get("/admin")
 async def get_admin_data(user: User = Depends(get_current_user)):
-    """Admin-only route"""
-    if not user.is_admin:
-        raise HTTPException(status_code=403, detail="Access denied")
+    """Admin-only route using Oso RBAC"""
+    
+    # 🔹 Enforce Admin Access with Oso
+    authorize(user, "manage", "admin-dashboard")
 
     return {"message": f"Welcome, {user.username}. You have admin access."}
 
