@@ -21,7 +21,7 @@ This FastAPI microservice provides **secure CRUD operations for user profiles, J
 
 ## Clone the Repository**
 ```bash
-git clone https://github.com/waleedahmedwaheed/fastapi-microservice.git
+git clone https://github.com/waleedahmedwaheed/FastAPI-Microservice-with-AI-Integration-RBAC.git
 cd fastapi-microservice
 ```
 
